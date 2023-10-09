@@ -1,40 +1,36 @@
 package com.example.guiversion;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class HelloController {
-    @FXML
-    private Label welcomeText;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void switchToScene1(ActionEvent e) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("scene1.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    @FXML
-    private Circle myCircle;
-    private double x;
-    private double y;
-
-    public void up(ActionEvent e) {
-        //System.out.println("UP");
-        myCircle.setCenterY(y-=10);
+    public void switchToScene2(ActionEvent e) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("scene2.fxml"));
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-    public void down(ActionEvent e) {
-        //System.out.println("DOWN");
-        myCircle.setCenterY(y+=10);
-    }
-    public void left(ActionEvent e) {
-        //System.out.println("LEFT");
-        myCircle.setCenterX(x-=10);
-    }
-    public void right(ActionEvent e) {
-        //System.out.println("RIGHT");
-        myCircle.setCenterX(x+=10);
-    }
-
 }
