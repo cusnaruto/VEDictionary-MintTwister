@@ -1,0 +1,14 @@
+.root{
+
+}
+
+.label{
+    -fx-font-size: 30;
+    -fx-font-family:"Comic Sans MS";
+    -text-fill:"Yellow";
+    -fx-alignment:center;
+}
+
+#titleLabel{
+    -fx-font-size: 60;
+}
