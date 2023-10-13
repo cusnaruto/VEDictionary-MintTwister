@@ -1,8 +1,11 @@
 package com.example.guiversion;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -35,8 +38,25 @@ public class HelloApplication extends Application {
             stage.setTitle("chit fumo");
             stage.setScene(scene);
             stage.show();
+            stage.setOnCloseRequest(event -> {
+                event.consume();
+                logout(stage);
+            });
         } catch(Exception e) {
         e.printStackTrace();
         }
+    }
+    public void logout(Stage stage) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Thoát?");
+        alert.setHeaderText("Muốn thoát sao homie?");
+        alert.setContentText("Muốn save không homie?");
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            //stage = (Stage) scenePane.getScene().getWindow();
+            System.out.println("le logout had arrived");
+            stage.close();
+        }
+
     }
 }
