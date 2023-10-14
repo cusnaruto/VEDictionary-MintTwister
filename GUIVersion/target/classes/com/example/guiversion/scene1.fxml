@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.guiversion.Scene1Controller">
    <children>
@@ -28,5 +32,22 @@
             <Image url="@../../../../../src/main/java/com/example/guiversion/image1.jpg" />
          </image>
       </ImageView>
+      <Label fx:id="myTextLabel" layoutX="251.0" layoutY="22.0" text="Xin chào!">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="checkBox" layoutX="31.0" layoutY="57.0" mnemonicParsing="false" onAction="#change" text="Đổi sang ảnh 2" />
+      <RadioButton fx:id="rButton1" layoutX="262.0" layoutY="71.0" mnemonicParsing="false" onAction="#pickmap" text="nm1">
+         <toggleGroup>
+            <ToggleGroup fx:id="modPick" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rButton2" layoutX="371.0" layoutY="71.0" mnemonicParsing="false" onAction="#pickmap" text="nm2" toggleGroup="$modPick" />
+      <Text fx:id="mapPickLabel" layoutX="442.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Chọn map pick">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
