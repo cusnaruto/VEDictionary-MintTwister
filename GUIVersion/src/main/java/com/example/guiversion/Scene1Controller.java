@@ -1,22 +1,28 @@
 package com.example.guiversion;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Scene1Controller {
+public class Scene1Controller implements Initializable {
     @FXML
     TextField ageTextField;
     private Stage stage;
@@ -25,31 +31,31 @@ public class Scene1Controller {
     private Button logoutButton;
     @FXML
     private AnchorPane scenePane;
+    int level;
     @FXML
     private Label myTextLabel;
     @FXML
     ImageView myImageView;
     @FXML
-    CheckBox checkBox;
-    Button myButton;
+    private CheckBox checkBox;
     @FXML
-    private Label myLabel = new Label();
-    @FXML
-    private RadioButton rButton1, rButton2;
-
-    public void pickmap(ActionEvent event) {
-
-        if(rButton1.isSelected()) {
-            myLabel.setText(rButton1.getText());
+    private Button myButton;
+    public void selectItem() {
+        TreeItem<String> item = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+        if (item != null) {
+            System.out.println(item.getValue());
         }
-        else if(rButton2.isSelected()) {
-            myLabel.setText(rButton2.getText());
-        }
-
     }
+    @FXML
+    private TreeView treeView;
+
+    public Scene1Controller() {
+    }
+
     int age;
     Image myImage1 = new Image(getClass().getResourceAsStream("image1.jpg"));
     Image myImage2 = new Image(getClass().getResourceAsStream("image2.jpg"));
+
     public void displayImage() {
         myImageView.setImage(myImage2);
     }
@@ -61,8 +67,6 @@ public class Scene1Controller {
             myImageView.setImage(myImage1);
         }
     }
-
-
     public void login(ActionEvent event) throws IOException {
         //root = FXMLLoader.load(getClass().getResource("Scene2.fxml"));
         try {
@@ -104,5 +108,29 @@ public class Scene1Controller {
             stage.close();
         }
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        TreeItem<String> rootItem = new TreeItem<>("Map");
+
+        TreeItem<String> branchItem1 = new TreeItem<>("NM1");
+        TreeItem<String> branchItem2 = new TreeItem<>("NM2");
+        TreeItem<String> branchItem3 = new TreeItem<>("NM3");
+        TreeItem<String> branchItem4 = new TreeItem<>("NM4");
+
+        TreeItem<String> leafItem1 = new TreeItem<>("Consist");
+        TreeItem<String> leafItem2 = new TreeItem<>("Stream");
+        TreeItem<String> leafItem3 = new TreeItem<>("Alt");
+        TreeItem<String> leafItem4 = new TreeItem<>("Tech");
+
+        rootItem.getChildren().addAll(branchItem1,branchItem2,branchItem3,branchItem4);
+        branchItem1.getChildren().addAll(leafItem1);
+        branchItem2.getChildren().addAll(leafItem2);
+        branchItem3.getChildren().addAll(leafItem3);
+        branchItem4.getChildren().addAll(leafItem4);
+
+
+        treeView.setRoot(rootItem);
     }
 }
